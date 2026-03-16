@@ -37,7 +37,7 @@ const cursos = [
     horas: "40h",
     instituicao: "FATEC",
     ano: 2025,
-    descricao: "Introdução à linguagem Python, lógica de programação e estruturas básicas.",
+    descricao: "Capacitação em inovação, empreendedorismo e novas tecnologias aplicadas ao mercado.",
     certificado: "imagem/imagens/CERTIFICADOS/certif_escola_inovadores.jpg",
     link: "https://inova.cps.sp.gov.br/escola-de-inovadores/"
   },
@@ -46,7 +46,7 @@ const cursos = [
     horas: "18h",
     instituicao: "Fundação Bradesco",
     ano: 2025,
-    descricao: "Capacitação em inovação, empreendedorismo e novas tecnologias aplicadas ao mercado.",
+    descricao: "Introdução à linguagem Python, lógica de programação e estruturas básicas.",
     certificado: "imagem/imagens/CERTIFICADOS/certif_python_basic_bradesco.jpg",
     link: "https://www.ev.org.br/cursos/linguagem-de-programacao-python-basico"
   }

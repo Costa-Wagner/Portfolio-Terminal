@@ -1,4 +1,4 @@
-# Portfólio — Wagner Costa
+# Portfólio Terminal — Wagner Costa
 
 <!-- HEADER -->
 <div align="center">
@@ -58,10 +58,10 @@ $ frontend --list
 
 ```bash
 # Clone o repositório
-git clone https://github.com/Costa-Wagner/portfolio3-wagner.git
+git clone https://github.com/Costa-Wagner/Portfolio_Terminal.git
 
 # Acesse a pasta
-cd portfolio3-wagner
+cd Portfolio_Terminal
 
 # Abra no navegador
 # Basta abrir o arquivo index.html no seu browser
@@ -75,7 +75,7 @@ cd portfolio3-wagner
 ## `$ tree`
 
 ```
-portfolio3-wagner/
+Portfolio_Terminal/
 ├── index.html
 ├── README.md
 ├── js/
