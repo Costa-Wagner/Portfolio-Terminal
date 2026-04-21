@@ -17,6 +17,8 @@
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)]()
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)]()
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)]()
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
+[![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)]()
 
 </div>
 
@@ -26,7 +28,7 @@
 
 > Engenheiro. Estudante de TI. Criando soluções.
 
-Portfólio pessoal desenvolvido como projeto acadêmico do 2º semestre de DSM — FATEC/SJC, na disciplina de Desenvolvimento Web II. Feito com HTML, CSS e JavaScript puro, com foco nos requisitos de estrutura de decisão, repetição e funções.
+Portfólio pessoal desenvolvido como projeto acadêmico do 2º semestre de DSM — FATEC/SJC, na disciplina de Desenvolvimento Web II. Feito com HTML, CSS, JavaScript e Python (Flask), com rotas GET, POST, PUT e DELETE para gerenciamento dinâmico do conteúdo.
 
 ---
 
@@ -50,6 +52,11 @@ $ frontend --list
   → HTML5
   → CSS3
   → JavaScript
+
+$ backend --list
+  → Python
+  → Flask
+  → REST API (GET · POST · PUT · DELETE)
 ```
 
 ---
@@ -63,12 +70,20 @@ git clone https://github.com/Costa-Wagner/Portfolio_Terminal.git
 # Acesse a pasta
 cd Portfolio_Terminal
 
-# Abra no navegador
-# Basta abrir o arquivo index.html no seu browser
-# ou use a extensão Live Server no VS Code
-```
+# Crie e ative o ambiente virtual
+python -m venv venv
+source venv/Scripts/activate  # Windows
+source venv/bin/activate       # Linux/Mac
 
-> Nenhuma dependência. Nenhuma instalação. Só abre e roda. ✅
+# Instale as dependências
+pip install flask flask-cors
+
+# Rode o servidor Flask
+python app.py
+
+# Abra o site pelo Live Server no VS Code
+# ou acesse http://127.0.0.1:5500
+```
 
 ---
 
@@ -76,15 +91,21 @@ cd Portfolio_Terminal
 
 ```
 Portfolio_Terminal/
+├── app.py
 ├── index.html
 ├── README.md
 ├── js/
-│    └── script.js
+│   ├── script.js
+│   ├── formacao.js
+│   ├── cursos.js
+│   ├── skills.js
+│   ├── projetos.js
+│   └── admin.js
 ├── css/
-│    └── style.css
+│   └── style.css
 └── imagem/
-     ├── imagens/
-     └── logos/
+    ├── imagens/
+    └── logos/
 ```
 
 ---
