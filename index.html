@@ -23,7 +23,7 @@
     <div id="admin-login">
       <div class="form-group">
         <label>Senha</label>
-        <input type="password" id="admin-senha" placeholder="Digite a senha" />
+        <input type="password" id="admin-senha" placeholder="Digite a senha" onkeydown="if(event.key==='Enter') verificarSenha()" />
       </div>
       <button type="button" class="btn-proj" style="width:100%; margin-top:10px;" onclick="verificarSenha()">► Entrar</button>
       <p id="admin-senha-erro" style="color:#ff4466; font-size:8px; margin-top:10px;"></p>
@@ -31,46 +31,141 @@
 
     <!-- FORMULÁRIO (escondido até login) -->
     <div id="admin-conteudo" style="display:none;">
-      <form onsubmit="return adicionarProjeto(event)">
-        <div class="form-group">
-          <label>Nome</label>
-          <input type="text" id="admin-nome" placeholder="Nome do projeto" />
-        </div>
-        <div class="form-group">
-          <label>Data</label>
-          <input type="text" id="admin-data" placeholder="ex: abr/2026" />
-        </div>
-        <div class="form-group">
-          <label>Semestre</label>
-          <input type="text" id="admin-semestre" placeholder="ex: 2º sem. · FATEC" />
-        </div>
-        <div class="form-group">
-          <label>Descrição</label>
-          <textarea id="admin-descricao" rows="3" placeholder="Descrição do projeto"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Categoria</label>
-          <div class="btn-group">
-            <button type="button" class="btn-categoria" onclick="setCategoria('academico', this)" id="btn-academico">Acadêmico</button>
-            <button type="button" class="btn-categoria" onclick="setCategoria('api', this)" id="btn-api">API</button>
-            <button type="button" class="btn-categoria" onclick="setCategoria('pessoal', this)" id="btn-pessoal">Pessoal</button>
+
+      <!-- MENU -->
+      <div id="admin-menu">
+        <button class="btn-categoria" onclick="abrirSecao('formacao')">Formação</button>
+        <button class="btn-categoria" onclick="abrirSecao('cursos')">Cursos</button>
+        <button class="btn-categoria" onclick="abrirSecao('skills')">Skills</button>
+        <button class="btn-categoria" onclick="abrirSecao('projetos')">Projetos</button>
+      </div>
+
+      <!-- PROJETOS -->
+      <div id="form-projetos" style="display:none;">
+        <div id="lista-projetos-admin" style="margin-bottom:16px;"></div>
+        <form onsubmit="return adicionarProjeto(event)">
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="admin-nome" placeholder="Nome do projeto" />
           </div>
-          <input type="hidden" id="admin-categoria" value="">
-        </div>
-        <div class="form-group">
-          <label>Tecnologias</label>
-          <input type="text" id="admin-tecnologias" placeholder="ex: HTML, CSS, JS" />
-        </div>
-        <div class="form-group">
-          <label>Link</label>
-          <input type="text" id="admin-link" placeholder="https://..." />
-        </div>
-        <div class="form-group">
-          <label>GitHub</label>
-          <input type="text" id="admin-github" placeholder="https://github.com/..." />
-        </div>
-        <button type="submit" class="btn-proj" style="width:100%; margin-top:10px;">► Adicionar Projeto</button>
-      </form>
+          <div class="form-group">
+            <label>Data</label>
+            <input type="text" id="admin-data" placeholder="ex: abr/2026" />
+          </div>
+          <div class="form-group">
+            <label>Semestre</label>
+            <input type="text" id="admin-semestre" placeholder="ex: 2º sem. · FATEC" />
+          </div>
+          <div class="form-group">
+            <label>Descrição</label>
+            <textarea id="admin-descricao" rows="3" placeholder="Descrição do projeto"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Categoria</label>
+            <div class="btn-group">
+              <button type="button" class="btn-categoria" onclick="setCategoria('academico', this)" id="btn-academico">Acadêmico</button>
+              <button type="button" class="btn-categoria" onclick="setCategoria('api', this)" id="btn-api">API</button>
+              <button type="button" class="btn-categoria" onclick="setCategoria('pessoal', this)" id="btn-pessoal">Pessoal</button>
+            </div>
+            <input type="hidden" id="admin-categoria" value="">
+          </div>
+          <div class="form-group">
+            <label>Tecnologias</label>
+            <input type="text" id="admin-tecnologias" placeholder="ex: HTML, CSS, JS" />
+          </div>
+          <div class="form-group">
+            <label>Link</label>
+            <input type="text" id="admin-link" placeholder="https://..." />
+          </div>
+          <div class="form-group">
+            <label>GitHub</label>
+            <input type="text" id="admin-github" placeholder="https://github.com/..." />
+          </div>
+          <button type="submit" id="btn-submit-projeto" class="btn-proj" style="width:100%; margin-top:10px;">► Adicionar Projeto</button>
+          <button type="button" id="btn-cancelar-projeto" class="btn-proj" style="width:100%; margin-top:8px; display:none; border-color:#ff4466; color:#ff4466;" onclick="resetarFormProjetos()">✕ Cancelar Edição</button>
+        </form>
+      </div>
+
+      <!-- FORMAÇÃO -->
+      <div id="form-formacao" style="display:none;">
+        <div id="lista-formacao-admin" style="margin-bottom:16px;"></div>
+        <form onsubmit="return adicionarFormacao(event)">
+          <div class="form-group">
+            <label>Ícone</label>
+            <input type="text" id="formacao-icone" placeholder="ex: 🎓" />
+          </div>
+          <div class="form-group">
+            <label>Curso</label>
+            <input type="text" id="formacao-curso" placeholder="Nome do curso" />
+          </div>
+          <div class="form-group">
+            <label>Instituição</label>
+            <input type="text" id="formacao-instituicao" placeholder="ex: FATEC / São José dos Campos" />
+          </div>
+          <div class="form-group">
+            <label>Período</label>
+            <input type="text" id="formacao-periodo" placeholder="ex: 2028 · em andamento" />
+          </div>
+          <button type="submit" id="btn-submit-formacao" class="btn-proj" style="width:100%; margin-top:10px;">► Adicionar Formação</button>
+          <button type="button" id="btn-cancelar-formacao" class="btn-proj" style="width:100%; margin-top:8px; display:none; border-color:#ff4466; color:#ff4466;" onclick="resetarFormFormacao()">✕ Cancelar Edição</button>
+        </form>
+      </div>
+
+      <!-- CURSOS -->
+      <div id="form-cursos" style="display:none;">
+        <div id="lista-cursos-admin" style="margin-bottom:16px;"></div>
+        <form onsubmit="return adicionarCurso(event)">
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="curso-nome" placeholder="Nome do curso" />
+          </div>
+          <div class="form-group">
+            <label>Horas</label>
+            <input type="text" id="curso-horas" placeholder="ex: 40h" />
+          </div>
+          <div class="form-group">
+            <label>Instituição</label>
+            <input type="text" id="curso-instituicao" placeholder="ex: FATEC" />
+          </div>
+          <div class="form-group">
+            <label>Ano</label>
+            <input type="text" id="curso-ano" placeholder="ex: 2025" />
+          </div>
+          <div class="form-group">
+            <label>Descrição</label>
+            <textarea id="curso-descricao" rows="3" placeholder="Descrição do curso"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Link</label>
+            <input type="text" id="curso-link" placeholder="https://..." />
+          </div>
+          <div class="form-group">
+            <label>Certificado (caminho da imagem)</label>
+            <input type="text" id="curso-certificado" placeholder="imagem/imagens/CERTIFICADOS/..." />
+          </div>
+          <button type="submit" id="btn-submit-curso" class="btn-proj" style="width:100%; margin-top:10px;">► Adicionar Curso</button>
+          <button type="button" id="btn-cancelar-curso" class="btn-proj" style="width:100%; margin-top:8px; display:none; border-color:#ff4466; color:#ff4466;" onclick="resetarFormCurso()">✕ Cancelar Edição</button>
+        </form>
+      </div>
+
+      <!-- SKILLS -->
+      <div id="form-skills" style="display:none;">
+        <div id="lista-skills-admin" style="margin-bottom:16px;"></div>
+        <form onsubmit="return adicionarSkill(event)">
+          <div class="form-group">
+            <label>Ícone</label>
+            <input type="text" id="skill-icone" placeholder="ex: 🌐" />
+          </div>
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="skill-nome" placeholder="ex: HTML5" />
+          </div>
+          <button type="submit" id="btn-submit-skill" class="btn-proj" style="width:100%; margin-top:10px;">► Adicionar Skill</button>
+          <button type="button" id="btn-cancelar-skill" class="btn-proj" style="width:100%; margin-top:8px; display:none; border-color:#ff4466; color:#ff4466;" onclick="resetarFormSkill()">✕ Cancelar Edição</button>
+        </form>
+      </div>
+
+
     </div>
   </div>
 
@@ -325,6 +420,10 @@
   <script src="js/cursos.js"></script>
   <script src="js/skills.js"></script>
   <script src="js/projetos.js"></script>
+  <script src="js/admin-formacao.js"></script>
+  <script src="js/admin-cursos.js"></script>
+  <script src="js/admin-skills.js"></script>
+  <script src="js/admin-projetos.js"></script>
   <script src="js/admin.js"></script>
   <script src="js/script.js"></script>
 

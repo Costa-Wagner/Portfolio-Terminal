@@ -1,47 +1,31 @@
 /* ===========================================================================
-CURSOS (array)
+                              CURSOS.js (array)
 =========================================================================== */
-const cursos = [
-  {
-    nome: "Escola de Inovadores",
-    horas: "40h",
-    instituicao: "FATEC",
-    ano: 2025,
-    descricao: "Capacitação em inovação, empreendedorismo e novas tecnologias aplicadas ao mercado.",
-    certificado: "imagem/imagens/CERTIFICADOS/certif_escola_inovadores.jpg",
-    link: "https://inova.cps.sp.gov.br/escola-de-inovadores/"
-  },
-  {
-    nome: "Python Básico",
-    horas: "18h",
-    instituicao: "Fundação Bradesco",
-    ano: 2025,
-    descricao: "Introdução à linguagem Python, lógica de programação e estruturas básicas.",
-    certificado: "imagem/imagens/CERTIFICADOS/certif_python_basic_bradesco.jpg",
-    link: "https://www.ev.org.br/cursos/linguagem-de-programacao-python-basico"
-  }
-];
 
 // ===== GERAR LISTA DE CURSOS =====
 // ② Repetição - percorre o array e cria um item para cada curso
-const listaCursos = document.getElementById("lista-cursos");
+fetch("http://127.0.0.1:5000/cursos")
+  .then(res => res.json())
+  .then(cursos => {
+    const listaCursos = document.getElementById("lista-cursos");
 
-for (let i = 0; i < cursos.length; i++) {
-  listaCursos.innerHTML += `
-    <li class="curso-card">
-      <div class="curso-info">
-        <strong>${cursos[i].nome} (${cursos[i].horas})</strong>
-        <h4>${cursos[i].instituicao} · ${cursos[i].ano}</h4>
-        <p>${cursos[i].descricao}</p>
-      </div>
-      
-      <div class="proj-actions">
-        <button onclick="abrirModal('${cursos[i].certificado}')" class="btn-proj">► Certificado</button>
-        <a href="${cursos[i].link}" target="_blank" class="btn-proj">► Site</a>
-      </div>
-    </li>
-  `;
-}
+    for (let i = 0; i < cursos.length; i++) {
+      listaCursos.innerHTML += `
+        <li class="curso-card">
+          <div class="curso-info">
+            <strong>${cursos[i].nome} (${cursos[i].horas})</strong>
+            <h4>${cursos[i].instituicao} · ${cursos[i].ano}</h4>
+            <p>${cursos[i].descricao}</p>
+          </div>
+          <div class="proj-actions">
+            <button onclick="abrirModal('${cursos[i].certificado}')" class="btn-proj">► Certificado</button>
+            <a href="${cursos[i].link}" target="_blank" class="btn-proj">► Site</a>
+          </div>
+        </li>
+      `;
+    }
+  }
+);
 
 /* ════════ MODAL CERTIFICADO ════════ */
 function abrirModal(src) {

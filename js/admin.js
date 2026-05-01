@@ -1,6 +1,8 @@
 /* ===========================================================================
-ADMIN
+                                ADMIN.js
 =========================================================================== */
+
+/* ========================= Função — abre o PAINEL ADMIN  =========================*/
 function abrirAdmin() {
   const overlay = document.getElementById("admin-overlay");
   const box     = document.getElementById("admin-box");
@@ -18,8 +20,13 @@ function abrirAdmin() {
     overlay.classList.add("aberto");
     box.classList.add("aberto");
   }, 10);
+
+  setTimeout(() => {
+    document.getElementById("admin-senha").focus();
+  }, 50);
 }
 
+/* ========================= Função — verifica SENHA do ADMIN  =========================*/
 async function verificarSenha() {
   const senha = document.getElementById("admin-senha").value;
 
@@ -39,6 +46,7 @@ async function verificarSenha() {
   }
 }
 
+/* ========================= Função — fecha o painel ADMIN  =========================*/
 function fecharAdmin() {
   const overlay = document.getElementById("admin-overlay");
   const box     = document.getElementById("admin-box");
@@ -52,49 +60,28 @@ function fecharAdmin() {
   }, 300);
 }
 
-async function adicionarProjeto(event) {
-  event.preventDefault();
+/* ========================= Função — navegação entre seções  =========================*/
+function abrirSecao(secao) {
+  // Esconde todos os formulários
+  document.getElementById("form-formacao").style.display = "none";
+  document.getElementById("form-cursos").style.display = "none";
+  document.getElementById("form-skills").style.display = "none";
+  document.getElementById("form-projetos").style.display = "none";
 
-  const novo = {
-    nome:        document.getElementById("admin-nome").value,
-    data:        document.getElementById("admin-data").value,
-    descricao:   document.getElementById("admin-descricao").value,
-    semestre:    document.getElementById("admin-semestre").value,
-    categoria:   document.getElementById("admin-categoria").value,
-    tecnologias: document.getElementById("admin-tecnologias").value.split(",").map(t => t.trim()),
-    link:        document.getElementById("admin-link").value,
-    github:      document.getElementById("admin-github").value
-  };
+  // destaca botão ativo
+  document.querySelectorAll("#admin-menu .btn-categoria").forEach(btn => btn.classList.remove("ativo"));
+  event.target.classList.add("ativo");
 
-  const resposta = await fetch("http://127.0.0.1:5000/projetos", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(novo)
-  });
+  // Exibe o formulário da seção clicada
+  document.getElementById("form-" + secao).style.display = "block";
 
-  if (resposta.ok) {
-    const criado = await resposta.json();
-    projetos.push(criado);
-    renderProjetos("todos");
-    atualizarStatProjetos();
-    fecharAdmin();
-    alert("✔ Projeto adicionado com sucesso!");
-  } else {
-    alert("Erro ao adicionar projeto.");
-  }
-
-  return false;
-}
-
-/* BOTÃO CATEGORIA - PROJETOS */
-function setCategoria(valor, elemento) {
-  // 1. Salva o valor no input hidden para o seu fetch funcionar
-  document.getElementById('admin-categoria').value = valor;
-
-  // 2. Remove a classe 'ativo' de todos os botões de categoria
-  const botoes = document.querySelectorAll('.btn-categoria');
-  botoes.forEach(btn => btn.classList.remove('ativo'));
-
-  // 3. Adiciona a classe 'ativo' apenas no botão que foi clicado
-  elemento.classList.add('ativo');
+  if (secao === "formacao") { resetarFormFormacao(); carregarFormacaoAdmin(); }
+  if (secao === "cursos") { resetarFormCurso(); carregarCursosAdmin(); }
+  if (secao === "skills") { resetarFormSkill(); carregarSkillsAdmin(); }
+  if (secao === "projetos") { resetarFormProjeto(); carregarProjetosAdmin(); }
+ 
+  // reseta botão para modo adicionar
+  const btn = document.getElementById("btn-submit-projeto");
+  btn.textContent = "► Adicionar Projeto";
+  btn.onclick = null;
 }
