@@ -4,15 +4,15 @@
 
 | CRUD | Método | O que faz
 |---|---|---
-|**C** reate | **GET** | LISTA os registros
-|**R** ead | **POST** | CRIA um novo registro
-|**U** pdate | **PUT** | EDITA um registro existente
+|**C** reate | **POST**   | CRIA um novo registro
+|**R** ead   | **GET**    | LISTA os registros
+|**U** pdate | **PUT**    | EDITA um registro existente
 |**D** elete | **DELETE** | REMOVE um registro
 
 ## 1. Iniciar o servidor Flask
 
 ```bash
-cd ~/Desktop/T.I/PROJETOS/FATEC/PORTFÓLIO/2.sem/Portfolio-Terminal
+cd Portfolio-Terminal
 source venv/Scripts/activate
 python app.py
 ```
@@ -78,9 +78,10 @@ python app.py
 
 ## 7. Demonstrar painel admin no site
 
-- Clicar em **WGCosta** no canto superior esquerdo
-- Digitar a senha
-- Preencher o formulário e adicionar um projeto
-- ✅ Projeto aparece na lista sem recarregar a página
+- Acessar Admin com senha
+- Navegar entre Formação, Cursos, Skills e Projetos
+- Preencher o formulário e adicionar uma nova formação, cursos, skills ou projetos
+- Itens já cadastrados aparecem para edição/remoção
+- Formulário permite adicionar novos registros e cancelar já existentes
 
 > **Observação:** Os dados adicionados via POST ou painel admin são perdidos ao reiniciar o Flask pois ficam na memória. Na Atividade 3 serão persistidos no banco de dados.

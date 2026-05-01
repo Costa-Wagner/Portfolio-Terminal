@@ -22,15 +22,11 @@
 
 </div>
 
----
-
 ## `$ whoami`
 
 > Engenheiro. Estudante de TI. Criando soluções.
 
 Portfólio pessoal desenvolvido como projeto acadêmico do 2º semestre de DSM — FATEC/SJC, na disciplina de Desenvolvimento Web II. Feito com HTML, CSS, JavaScript e Python (Flask), com rotas GET, POST, PUT e DELETE para gerenciamento dinâmico do conteúdo.
-
----
 
 ## `$ ./sections`
 
@@ -42,8 +38,6 @@ Portfólio pessoal desenvolvido como projeto acadêmico do 2º semestre de DSM �
 | `#skills` | Tecnologias e habilidades |
 | `#projetos` | Projetos desenvolvidos |
 | `#contato` | Formulário e redes sociais |
-
----
 
 ## `$ tech-stack.txt`
 
@@ -58,8 +52,6 @@ $ backend --list
   → Flask
   → REST API (GET · POST · PUT · DELETE)
 ```
-
----
 
 ## `$ git clone & ./run`
 
@@ -85,7 +77,12 @@ python app.py
 # ou acesse http://127.0.0.1:5500
 ```
 
----
+## `$ status do projeto`
+```
+→ Atividade 1 ✅ front-end estático
+→ Atividade 2 ✅ back-end Flask + CRUD completo + painel admin
+→ Atividade 3 🟡 banco de dados (MySQL/SQLite) "em desenvolvimento"
+```
 
 ## `$ tree`
 
@@ -100,15 +97,17 @@ Portfolio_Terminal/
 │   ├── cursos.js
 │   ├── skills.js
 │   ├── projetos.js
-│   └── admin.js
+│   ├── admin.js
+│   ├── admin-formacao.js
+│   ├── admin-cursos.js
+│   ├── admin-skills.js
+│   └── admin-projetos.js
 ├── css/
 │   └── style.css
 └── imagem/
     ├── imagens/
     └── logos/
 ```
-
----
 
 ## `$ ./contact`
 
@@ -118,8 +117,6 @@ Portfolio_Terminal/
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Costa-Wagner)
   
 </div>
-
----
 
 ## `$ status`
 
